@@ -1,8 +1,6 @@
 function TableHeader({
  filter,
  setFilter,
- SearchTerm,
- setSearchTerm,
  showSearch,
   setShowSearch
 

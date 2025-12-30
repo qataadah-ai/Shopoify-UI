@@ -36,9 +36,15 @@ function ProductCard({ product }) {
       {/* Status */}
       <td className="p-[6px] max-w-[112px]">
         <span
-          className="inline-flex items-center text-[12px] font-[550]
+          className={`inline-flex items-center text-[12px] font-[550]
          rounded-[10px] py-[2px] px-[8px]
-         text-[#014b40] bg-[#affebf]"
+         ${
+      product.Status === "Active"
+        ? "text-[#014b40] bg-[#affebf]"
+        : product.Status === "Draft"
+        ? "text-[#003a5a] bg-[#d5ebff]" : 
+        product.Status === "Archived"  ? "text-[#616161] bg-[#E8E8E8]": "text-gray-700 bg-gray-200"
+    }`}
         >
           {product.Status}
         </span>

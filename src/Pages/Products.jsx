@@ -4,19 +4,20 @@ import TableHeader from "../Components/TableHeader";
 import ProductsData from "../ProductsData";
 import ProductCard from "../Components/ProductCard";
 import TableFooter from "../Components/TableFooter";
+
 function Products() {
-const [filter , setFilter] = useState("All")
-const [SearchTerm , setSearchTerm] = useState("")
-const [showSearch ,setShowSearch] = useState (false)
+  const [filter, setFilter] = useState("All");
+  const [SearchTerm, setSearchTerm] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
 
+  let filterProducts = ProductsData.filter((product) => {
+    let matchesFilter = filter === "All" ? true : product.Status === filter;
 
-let filterProducts = ProductsData.filter((product) =>{
-  let matchesFilter = filter === "All"? ProductsData : product => product.status === filter
-
-  let matchesSearch =  product.Product.toLowerCase().includes(
-      SearchTerm.toLowerCase())
-      return matchesFilter && matchesSearch
-})
+    let matchesSearch = product.Product.toLowerCase().includes(
+      SearchTerm.toLowerCase()
+    );
+    return matchesFilter && matchesSearch;
+  });
 
   return (
     <div className="h-screen bg-[#F1F1F1] ">
@@ -24,15 +25,14 @@ let filterProducts = ProductsData.filter((product) =>{
 
       <section className="px-[16px] mt-4">
         <div className="w-full bg-white border border-[#E3E3E3] rounded-[12px] ">
-          <TableHeader 
-          filter={filter} 
-          setFilter={setFilter}
-          SearchTerm={SearchTerm }
-          setSearchTerm={setSearchTerm}
-          showSearch={showSearch}
-          setShowSearch={setShowSearch} />
+          <TableHeader
+            filter={filter}
+            setFilter={setFilter}
+            showSearch={showSearch}
+            setShowSearch={setShowSearch}
+          />
 
-            {/* Search Input */}
+          {/* Search Input */}
           {showSearch && (
             <div className="p-2">
               <input
@@ -46,26 +46,20 @@ let filterProducts = ProductsData.filter((product) =>{
           )}
 
           <div className="overflow-x-auto ">
-
             {/* Table Wrapper */}
             <table className="min-w-[998px] w-full border-collapse">
               {/* HEADER card */}
+
               <thead className="bg-[#f6f6f7] border-b border-gray-300">
                 {/* Sticky Checkbox */}
                 <tr>
-                 <th
-          className="sticky left-0 z-100 w-[36px] bg-[#f6f6f7] p-[6px_6px_6px_12px] ">
-          <input
-            type="checkbox"
-            className="h-4 w-4 "
-         
-          />
-        </th>
+                  <th className="sticky left-0 z-100 w-[36px] bg-[#f6f6f7] p-[6px_6px_6px_12px] ">
+                    <input type="checkbox" className="h-4 w-4 " />
+                  </th>
 
-        <th
-          className="sticky left-[0] z-100 w-[52px] bg-[#f6f6f7] p-[6px] ">
-          <span className="sr-only">Image</span>
-        </th>
+                  <th className="sticky left-[0] z-100 w-[52px] bg-[#f6f6f7] p-[6px] ">
+                    <span className="sr-only">Image</span>
+                  </th>
                   {/* Sortable: Product */}
                   <th className="p-[6px] w-[200px] text-left">
                     <button className="inline-flex items-center gap-1 font-[550] text-[12px] text-[#616161]">
@@ -124,13 +118,11 @@ let filterProducts = ProductsData.filter((product) =>{
                   return <ProductCard key={product.id} product={product} />;
                 })}
               </tbody>
+             <TableFooter />
 
-
-            
             </table>
           </div>
         </div>
-
       </section>
     </div>
   );

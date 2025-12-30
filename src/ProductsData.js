@@ -50,9 +50,8 @@ const ProductsData = [
   },
    {
     id: 5,
-    Product:
-      '3" Airlift High-Waist Polka Dot Short - Black/white 3" Airlift High-Waist Polka Dot Short - Black/white',
-    Status: "Active",
+    Product:"Qazi Qataadah",
+     Status: "Active",
     Inventory: "Inventory not ranked",
     Category: null,
     Channels: 2,
@@ -63,8 +62,7 @@ const ProductsData = [
 
    {
     id: 6,
-    Product:
-      '3" Airlift High-Waist Polka Dot Short - Black/white 3" Airlift High-Waist Polka Dot Short - Black/white',
+    Product:"Afrdi",
     Status: "Active",
     Inventory: "Inventory not ranked",
     Category: null,
