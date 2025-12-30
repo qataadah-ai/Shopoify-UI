@@ -2,10 +2,10 @@ import React from 'react'
 
 function TableFooter() {
     return (
-       <tfoot className="bg-[#f6f6f7] border-t border-gray-300">
+       <tfoot className="bg-[#f6f6f7] border-t border-gray-300 ">
   <tr>
     <td colSpan={9} className="px-4 py-2 text-sm text-gray-500 font-medium">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center ">
         {/* Pagination Buttons */}
         <div className="flex space-x-2">
           <button
@@ -28,10 +28,11 @@ function TableFooter() {
               />
             </svg>
           </button>
+          
+        {/* Page info */}
+        <span className='items-center'>1-50</span>
         </div>
 
-        {/* Page info */}
-        <span>1-50</span>
       </div>
     </td>
   </tr>

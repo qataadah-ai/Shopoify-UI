@@ -23,7 +23,7 @@ function Products() {
     <div className="h-screen bg-[#F1F1F1] ">
       <ProductHeader />
 
-      <section className="px-[16px] mt-4">
+      <section className="px-[16px] mt-4 ">
         <div className="w-full bg-white border border-[#E3E3E3] rounded-[12px] ">
           <TableHeader
             filter={filter}
@@ -45,7 +45,7 @@ function Products() {
             </div>
           )}
 
-          <div className="overflow-x-auto ">
+          <div className="overflow-x-auto">
             {/* Table Wrapper */}
             <table className="min-w-[998px] w-full border-collapse">
               {/* HEADER card */}
@@ -112,7 +112,7 @@ function Products() {
                   </th>
                 </tr>
               </thead>
-
+ {/* Displaying all Products */}
               <tbody className="border border-gray-300">
                 {filterProducts.map((product) => {
                   return <ProductCard key={product.id} product={product} />;
