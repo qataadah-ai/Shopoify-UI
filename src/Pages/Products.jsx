@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import ProductHeader from "../Components/ProductHeader";
 import TableHeader from "../Components/TableHeader";
 import ProductsData from "../ProductsData";
 import ProductCard from "../Components/ProductCard";
+import TableFooter from "../Components/TableFooter";
 function Products() {
+const [filter , setFilter] = useState("All")
   return (
     <div className="h-screen bg-[#F1F1F1] ">
       <ProductHeader />
@@ -20,13 +22,19 @@ function Products() {
               <thead className="bg-[#f6f6f7] border-b border-gray-300">
                 {/* Sticky Checkbox */}
                 <tr>
-                  <th className="sticky left-0 z-100 w-[36px] bg-[#f6f6f7] p-[6px_6px_6px_12px] ">
-                    <input type="checkbox" className="h-4 w-4 " />
-                  </th>
-                  {/* Sticky Image Column */}
-                  <th className="sticky left-[0] z-100 w-[52px] bg-[#f6f6f7] p-[6px] ">
-                    <span className="sr-only">Image</span>
-                  </th>
+                 <th
+          className="sticky left-0 z-100 w-[36px] bg-[#f6f6f7] p-[6px_6px_6px_12px] ">
+          <input
+            type="checkbox"
+            className="h-4 w-4 "
+         
+          />
+        </th>
+
+        <th
+          className="sticky left-[0] z-100 w-[52px] bg-[#f6f6f7] p-[6px] ">
+          <span className="sr-only">Image</span>
+        </th>
                   {/* Sortable: Product */}
                   <th className="p-[6px] w-[200px] text-left">
                     <button className="inline-flex items-center gap-1 font-[550] text-[12px] text-[#616161]">
@@ -85,6 +93,9 @@ function Products() {
                   return <ProductCard key={product.id} product={product} />;
                 })}
               </tbody>
+
+
+            
             </table>
           </div>
         </div>
