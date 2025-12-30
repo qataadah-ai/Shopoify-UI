@@ -7,8 +7,8 @@ import TableFooter from "../Components/TableFooter";
 function Products() {
 const [filter , setFilter] = useState("All")
 
-let filterProducts = 
-filter === "All" ? ProductsData :  ProductsData.filter(product => product.Status === filter);
+let filterProducts = filter === "All"? ProductsData:
+ProductsData.filter((product) => product.Status === filter)
 
   return (
     <div className="h-screen bg-[#F1F1F1] ">
@@ -16,7 +16,7 @@ filter === "All" ? ProductsData :  ProductsData.filter(product => product.Status
 
       <section className="px-[16px] mt-4">
         <div className="w-full bg-white border border-[#E3E3E3] rounded-[12px] ">
-          <TableHeader />
+          <TableHeader  filter={filter} setFilter={setFilter}  />
 
           <div className="overflow-x-auto ">
 
@@ -93,7 +93,7 @@ filter === "All" ? ProductsData :  ProductsData.filter(product => product.Status
               </thead>
 
               <tbody className="border border-gray-300">
-                {ProductsData.map((product) => {
+                {filterProducts.map((product) => {
                   return <ProductCard key={product.id} product={product} />;
                 })}
               </tbody>
