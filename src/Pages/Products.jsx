@@ -6,9 +6,17 @@ import ProductCard from "../Components/ProductCard";
 import TableFooter from "../Components/TableFooter";
 function Products() {
 const [filter , setFilter] = useState("All")
+const [SearchTerm , setSearchTerm] = useState("")
+const [showSearch ,setShowSearch] = useState (false)
 
-let filterProducts = filter === "All"? ProductsData:
-ProductsData.filter((product) => product.Status === filter)
+
+let filterProducts = ProductsData.filter((product) =>{
+  let matchesFilter = filter === "All"? ProductsData : product => product.status === filter
+
+  let matchesSearch =  product.Product.toLowerCase().includes(
+      SearchTerm.toLowerCase())
+      return matchesFilter && matchesSearch
+})
 
   return (
     <div className="h-screen bg-[#F1F1F1] ">
@@ -16,7 +24,26 @@ ProductsData.filter((product) => product.Status === filter)
 
       <section className="px-[16px] mt-4">
         <div className="w-full bg-white border border-[#E3E3E3] rounded-[12px] ">
-          <TableHeader  filter={filter} setFilter={setFilter}  />
+          <TableHeader 
+          filter={filter} 
+          setFilter={setFilter}
+          SearchTerm={SearchTerm }
+          setSearchTerm={setSearchTerm}
+          showSearch={showSearch}
+          setShowSearch={setShowSearch} />
+
+            {/* Search Input */}
+          {showSearch && (
+            <div className="p-2">
+              <input
+                type="text"
+                value={SearchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search products..."
+                className="w-full border border-gray-300 rounded p-2 text-sm"
+              />
+            </div>
+          )}
 
           <div className="overflow-x-auto ">
 
