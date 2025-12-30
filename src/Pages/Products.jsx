@@ -6,6 +6,10 @@ import ProductCard from "../Components/ProductCard";
 import TableFooter from "../Components/TableFooter";
 function Products() {
 const [filter , setFilter] = useState("All")
+
+let filterProducts = 
+filter === "All" ? ProductsData :  ProductsData.filter(product => product.Status === filter);
+
   return (
     <div className="h-screen bg-[#F1F1F1] ">
       <ProductHeader />
