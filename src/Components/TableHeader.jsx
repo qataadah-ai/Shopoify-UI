@@ -5,10 +5,10 @@ function TableHeader({ filter, setFilter }) {
     <div className="flex items-center justify-between p-2 border-b border-gray-200">
       {/* LEFT: Tabs */}
       <div className="flex items-center gap-1">
+        
         {tabs.map((tab) => (
           <button
-            key={tab}
-            onClick={() => setFilter(tab)} // set the filter when clicked
+            onClick={() => setFilter(tab)}
             className={`px-3 py-1 text-[12px] cursor-pointer font-[550] rounded-[10px] ${
               filter === tab
                 ? "bg-[#e0e0e0]" // active tab style
