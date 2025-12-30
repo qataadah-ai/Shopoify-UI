@@ -57,7 +57,7 @@ function Products() {
                     <input type="checkbox" className="h-4 w-4 " />
                   </th>
 
-                  <th className="sticky left-[36px] z-100 w-[52px] bg-[#f6f6f7] p-[6px] ">
+                  <th className="sticky left-[36px] z-50 w-[52px] min-w-[52px] max-w-[52px] bg-[#f6f6f7] p-[6px] ">
                     <span className="sr-only">Image</span>
                   </th>
                   {/* Sortable: Product */}
@@ -106,6 +106,7 @@ function Products() {
                       Catalogs
                     </button>
                   </th>
+                  
                   {/* Sticky Actions */}
                   <th className="sticky right-0 z-10 w-[44px] bg-[#f6f6f7] p-[6px_6px_6px_12px] ">
                     <span className="sr-only">Actions</span>

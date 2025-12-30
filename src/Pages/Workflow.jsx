@@ -14,32 +14,36 @@ export const Workflow = ()=>{
         
 
         <div className="flex justify-between">
-          <nav className="flex items-center">
-        
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4"
-              fill="currentColor"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M12 14h-2a1 1 0 0 1-1-1v-2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v2.5a1 1 0 0 1-1 1h-2a2 2 0 0 1-2-2v-4.257c0-.796.316-1.56.879-2.122l3.707-3.707c.78-.78 2.047-.78 2.828 0l3.707 3.707a3 3 0 0 1 .879 2.122v4.257a2 2 0 0 1-2 2"
-              ></path>
-            </svg>
-            <h1 className="text-[1.125rem] font-semibold text-gray-900">
-              <a href="#"> Workflow </a>
-            </h1>
-          </nav>
+
+         <div class="flex items-center ">
+  <div class="flex items-center justify-center p-1 rounded-md bg-gray-100">
+    <span class="text-[#303030]">
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 16 16" 
+        class="w-4 h-4 fill-current"
+      >
+        <path d="M12 14h-2a1 1 0 0 1-1-1v-2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v2.5a1 1 0 0 1-1 1h-2a2 2 0 0 1-2-2v-4.257c0-.796.316-1.56.879-2.122l3.707-3.707c.78-.78 2.047-.78 2.828 0l3.707 3.707a3 3 0 0 1 .879 2.122v4.257a2 2 0 0 1-2 2" />
+      </svg>
+    </span>
+  </div>
+
+  <div id="page-title">
+    <h1 class="text-[18px] font-semibold text-[#30303] tracking-tight leading-[1] " tabindex="-1">
+      Workflows
+    </h1>
+  </div>
+</div>
          
           <div className="flex gap-1">
             <button
-              className="py-1 px-3 bg-[#E3E3E3] rounded-[8px] text-sm font-medium hover:bg-[#cccc] cursor-pointer"
+              className="py-1 px-3 bg-[#E3E3E3] rounded-[8px] text-[12px] font-[550] text-[#303030] hover:bg-[#cccc] cursor-pointer"
             >
               Browse templates
             </button>
    <Link to={"/products"}>
             <button
-              className="py-1 px-3 bg-[#E3E3E3] rounded-[8px] text-sm font-medium hover:bg-[#cccc] cursor-pointer"
+              className="py-1 px-3 bg-[#E3E3E3] rounded-[8px] text-[12px] font-[550] text-[#303030] hover:bg-[#cccc] cursor-pointer"
             >
               Products
             </button>
@@ -80,12 +84,12 @@ export const Workflow = ()=>{
 
         
           <div className="space-y-[6px]">
-            <h2 className="text-sm font-semibold">
+            <h2 className="text-[14px] font-semibold text-[#303030]">
               Get more work done in less time
             </h2>
 
        
-            <p className="text-">
+            <p className="text-[12px] font-[450] text-[#303030]">
               Turn your tasks into automated workflows so you can get back to
               business.
             </p>
