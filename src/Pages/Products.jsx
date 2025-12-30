@@ -24,7 +24,7 @@ function Products() {
       <ProductHeader />
 
       <section className="px-[16px] mt-4 ">
-        <div className="w-full bg-white border border-[#E3E3E3] rounded-[12px] mb-10">
+        <div className="w-full bg-white border border-[#E3E3E3] rounded-[12px] ">
           <TableHeader
             filter={filter}
             setFilter={setFilter}

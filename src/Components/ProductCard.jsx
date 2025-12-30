@@ -11,7 +11,7 @@ function ProductCard({ product }) {
       >
         <input type="checkbox" className="h-4 w-4" />
       </th>
-      {/* Sticky Image */}
+       {/* Sticky Image */}
  <th
   className="sticky left-[36px] z-10 w-[52px]
              bg-white group-hover:bg-[#f7f7f7]
@@ -43,14 +43,12 @@ function ProductCard({ product }) {
           className={`inline-flex items-center text-[12px] font-[550]
          rounded-[10px] py-[2px] px-[8px]
          ${
-           product.Status === "Active"
-             ? "text-[#014b40] bg-[#affebf]"
-             : product.Status === "Draft"
-             ? "text-[#003a5a] bg-[#d5ebff]"
-             : product.Status === "Archived"
-             ? "text-[#616161] bg-[#E8E8E8]"
-             : "text-gray-700 bg-gray-200"
-         }`}
+      product.Status === "Active"
+        ? "text-[#014b40] bg-[#affebf]"
+        : product.Status === "Draft"
+        ? "text-[#003a5a] bg-[#d5ebff]" : 
+        product.Status === "Archived"  ? "text-[#616161] bg-[#E8E8E8]": "text-gray-700 bg-gray-200"
+    }`}
         >
           {product.Status}
         </span>
