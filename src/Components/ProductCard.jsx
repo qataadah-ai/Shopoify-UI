@@ -6,16 +6,17 @@ function ProductCard({ product }) {
       {/* Sticky Checkbox */}
       <th
         className="sticky left-0 z-10 w-[36px]
-       bg-white group-hover:bg-[#f7f7f7]
+       bg-white group-hover:bg-inherit
        p-[6px_6px_6px_12px]"
       >
         <input type="checkbox" className="h-4 w-4" />
       </th>
+      
        {/* Sticky Image */}
  <th
   className="sticky left-[36px] z-10 w-[52px]
-             bg-white group-hover:bg-[#f7f7f7]
-             p-[6px]"
+        bg-white group-hover:bg-inherit
+        p-[6px]"
 >
   <div className="w-[40px] h-[40px] rounded-[6px]
                   border border-[#D3D3D3]

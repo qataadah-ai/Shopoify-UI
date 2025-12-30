@@ -47,7 +47,7 @@ function Products() {
 
           <div className="overflow-x-auto">
             {/* Table Wrapper */}
-            <table className="min-w-[998px] w-full border-collapse">
+            <table className="min-w-[998px] w-full border-collapse table-fixed">
               {/* HEADER card */}
 
               <thead className="bg-[#f6f6f7] border-b border-gray-300">
@@ -57,11 +57,11 @@ function Products() {
                     <input type="checkbox" className="h-4 w-4 " />
                   </th>
 
-                  <th className="sticky left-[0] z-100 w-[52px] bg-[#f6f6f7] p-[6px] ">
+                  <th className="sticky left-[36px] z-100 w-[52px] bg-[#f6f6f7] p-[6px] ">
                     <span className="sr-only">Image</span>
                   </th>
                   {/* Sortable: Product */}
-                  <th className="p-[6px] w-[200px] text-left">
+                  <th className="p-[6px] w-[280px] text-left">
                     <button className="inline-flex items-center gap-1 font-[550] text-[12px] text-[#616161]">
                       Product
                       <svg
