@@ -95,13 +95,13 @@ function Products() {
                     </button>
                   </th>
                   {/* Channels (numeric end) */}
-                  <th className="p-[6px] w-[112.66px] text-left">
+                  <th className="p-[6px] w-[112.66px] text-center">
                     <button className="inline-flex items-center text-[12px]  font-[550] text-[#616161]">
                       Channels
                     </button>
                   </th>
                   {/* Catalogs (numeric end) */}
-                  <th className="p-[6px] w-[112.66px] text-left">
+                  <th className="p-[6px] w-[112.66px] text-center">
                     <button className="inline-flex items-center text-[12px]  font-[550] text-[#616161]">
                       Catalogs
                     </button>

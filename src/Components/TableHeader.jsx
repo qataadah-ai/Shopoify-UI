@@ -1,18 +1,16 @@
-function TableHeader({
- filter,
- setFilter,
- showSearch,
-  setShowSearch
+import { useState } from "react";
 
-    }) {
+function TableHeader({ filter, setFilter, showSearch, setShowSearch }) {
   const tabs = ["All", "Active", "Draft", "Archived"];
 
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="flex items-center justify-between p-2 border-b border-gray-200">
       {/* LEFT: Tabs */}
       <div className="flex items-center gap-1">
         {tabs.map((tab) => (
           <button
+            key={tab}
             onClick={() => setFilter(tab)}
             className={`px-3 py-1 text-[12px] cursor-pointer font-[550] rounded-[10px] ${
               filter === tab
@@ -53,22 +51,20 @@ function TableHeader({
       {/* RIGHT: Action Buttons */}
       <div className="flex items-center space-x-2">
         <div className="flex items-center space-x-2">
-          
           {/* Search + Filter Button */}
-          <button onClick={()=> setShowSearch(!showSearch)}
+          <button
+            onClick={() => setShowSearch(!showSearch)}
             type="button"
             aria-label="Search and filter products"
             className="
             flex rounded-[8px] bg-[#FFFFFF] text-[#303030] px-2 py-1.5 text-[0.75rem] font-semibold font-sans cursor-pointer inline-flex items-center justify-center [box-shadow:inset_0_0_0_.5px_#D3D3D3,inset_0_-1px_0_.5px_#B5B5B5] active:[translate-y:1px]"
           >
-          
             {/* Search Icon */}
             <svg
               className="w-4 h-4 mr-1"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
             >
-            
               <path
                 fillRule="evenodd"
                 d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4"
@@ -80,30 +76,140 @@ function TableHeader({
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
             >
-             
               <path d="M1 4a.75.75 0 0 1 .75-.75h12.5a.75.75 0 0 1 0 1.5h-12.5a.75.75 0 0 1-.75-.75" />
               <path d="M4.75 12a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" />
               <path d="M3.5 7.25a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5z" />
             </svg>
           </button>
+
           {/* Sort Button */}
-          <button
-            type="button"
-            aria-label="Sort the results"
-            className="flex rounded-[8px] bg-[#FFFFFF] text-[#484848] p-1 text-[0.75rem] font-semibold font-sans cursor-pointer inline-flex items-center justify-center [box-shadow:inset_0_0_0_.5px_#D3D3D3,inset_0_-0.5px_0_.5px_#B5B5B5] active:[translate-y:0.0625rem]"
-          >
-            
-            {/* Sort Icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              className="w-4 h-4"
+
+          <div className="relative">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              type="button"
+              aria-label="Sort the results"
+              className="flex rounded-[8px] bg-[#FFFFFF] text-[#484848] p-[6px] text-[0.75rem] font-semibold font-sans cursor-pointer inline-flex items-center justify-center [box-shadow:inset_0_0_0_.5px_#D3D3D3,inset_0_-0.5px_0_.5px_#B5B5B5] 
+            active:[translate-y:0.0625rem]"
             >
-              
-              <path d="M5.75 4.06v7.69a.75.75 0 0 1-1.5 0v-7.69l-1.72 1.72a.749.749 0 1 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.749.749 0 1 1-1.06 1.06z" />
-              <path d="M11.75 4.25a.75.75 0 0 0-1.5 0v7.69l-1.72-1.72a.749.749 0 1 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.749.749 0 1 0-1.06-1.06l-1.72 1.72z" />
-            </svg>
-          </button>
+              {/* Sort Icon */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                className="w-4 h-4"
+              >
+                <path d="M5.75 4.06v7.69a.75.75 0 0 1-1.5 0v-7.69l-1.72 1.72a.749.749 0 1 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.749.749 0 1 1-1.06 1.06z" />
+                <path d="M11.75 4.25a.75.75 0 0 0-1.5 0v7.69l-1.72-1.72a.749.749 0 1 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.749.749 0 1 0-1.06-1.06l-1.72 1.72z" />
+              </svg>
+            </button>
+
+            {isOpen && (
+              <>
+                {/* 1. Invisible Shield (closes menu when you click outside) */}
+                <div
+                  className="fixed inset-0 z-[60]"
+                  onClick={() => setIsOpen(false)}
+                />
+
+                {/* 2. The Sort Menu */}
+                <div className="absolute top-full right-0 mt-1 px-[12px] py-[8px] min-w-[160px] bg-white border border-gray-200 rounded-xl shadow-xl z-[70] text-left">
+                  {/* Header */}
+                  <div className="">
+                    <span className="text-[13px] font-[450] text-[#303030]">
+                      Sort by
+                    </span>
+                  </div>
+
+                  {/* List of Options */}
+                  <div className="flex flex-col border-b border-gray-200 ">
+                    {[
+                      { id: "title", label: "Product title" },
+                      { id: "created", label: "Created" },
+                      { id: "updated", label: "Updated" },
+                      { id: "inventory", label: "Inventory" },
+                    ].map((option) => {
+                      return (
+                        <label
+                          htmlFor={option.id}
+                          key={option.id}
+                          className="flex items-center space-x-2  py-1 hover:bg-gray-100 rounded-lg cursor-pointer group"
+                        >
+                          <input
+                            type="radio"
+                            id={option.id}
+                            name="sortOptions"
+                            className="w-4 h-4 accent-black cursor-pointer"
+                          />
+                          <span className="text-[13px] font-[450] text-[#303030]">
+                            {option.label}
+                          </span>
+                        </label>
+                      );
+                    })}
+                  </div>
+
+                  {/* Button  one */}
+
+                  <div className="py-[8px] flex flex-col gap-1
+                  ">
+
+                    <button
+                      type="button"
+                      className="flex items-center gap-2 p-[6px] rounded-[10px] w-full text-left hover:bg-[#F2F2F2] cursor-pointer"
+                    >
+                      {/* The Up Arrow SVG */}
+                      <span className="text-gray-500">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 16 16"
+                          className="w-4 h-4"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M8 14.5a.75.75 0 0 1-.75-.75v-9.69l-2.72 2.72a.749.749 0 1 1-1.06-1.06l4-4a.747.747 0 0 1 1.06 0l4 4a.749.749 0 1 1-1.06 1.06l-2.72-2.72v9.69a.75.75 0 0 1-.75.75"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </span>
+
+                      {/* Button Text */}
+                      <span className="text-[12px] font-[550] text-[#000]">
+                        Oldest first
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                       className="flex items-center gap-2 p-[6px] rounded-[10px] w-full text-left hover:bg-[#F2F2F2] cursor-pointer"
+                    >
+                      {/* The Up Arrow SVG */}
+                      <span className="flex items-center justify-center text-gray-500">
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 16 16" 
+    width="16" 
+    height="16" 
+    fill="currentColor"
+  >
+    <path 
+      fillRule="evenodd" 
+      d="M8 1.5a.75.75 0 0 1 .75.75v9.69l2.72-2.72a.749.749 0 1 1 1.06 1.06l-4 4a.747.747 0 0 1-1.06 0l-4-4a.749.749 0 1 1 1.06-1.06l2.72 2.72v-9.69a.75.75 0 0 1 .75-.75" 
+      clipRule="evenodd"
+    />
+  </svg>
+</span>
+
+                      {/* Button Text */}
+                      <span className="text-[12px] font-[550] text-[#000]">
+                        Newest first
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
