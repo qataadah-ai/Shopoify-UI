@@ -30,6 +30,8 @@ function Products() {
             setFilter={setFilter}
             showSearch={showSearch}
             setShowSearch={setShowSearch}
+            SearchTerm={SearchTerm}      // Add this
+  setSearchTerm={setSearchTerm}
           />
 
           {/* Search Input */}

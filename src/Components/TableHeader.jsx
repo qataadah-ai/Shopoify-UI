@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-function TableHeader({ filter, setFilter, showSearch, setShowSearch }) {
+function TableHeader({ filter, setFilter, showSearch, setShowSearch, SearchTerm, setSearchTerm }) {
+
   const tabs = ["All", "Active", "Draft", "Archived"];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -57,7 +58,8 @@ function TableHeader({ filter, setFilter, showSearch, setShowSearch }) {
             type="button"
             aria-label="Search and filter products"
             className="
-            flex rounded-[8px] bg-[#FFFFFF] text-[#303030] px-2 py-1.5 text-[0.75rem] font-semibold font-sans cursor-pointer inline-flex items-center justify-center [box-shadow:inset_0_0_0_.5px_#D3D3D3,inset_0_-1px_0_.5px_#B5B5B5] active:[translate-y:1px]"
+            flex rounded-[8px] bg-[#FFFFFF] text-[#303030] px-2 py-1.5 text-[0.75rem] font-semibold font-sans cursor-pointer inline-flex items-center justify-center  shadow-[inset_0_0_0_.5px_#D3D3D3,inset_0_-.5px_0_.5px_#B5B5B5]
+    active:translate-y-[0.0625rem]"
           >
             {/* Search Icon */}
             <svg
@@ -81,6 +83,7 @@ function TableHeader({ filter, setFilter, showSearch, setShowSearch }) {
               <path d="M3.5 7.25a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5z" />
             </svg>
           </button>
+          
 
           {/* Sort Button */}
 
@@ -89,8 +92,8 @@ function TableHeader({ filter, setFilter, showSearch, setShowSearch }) {
               onClick={() => setIsOpen(!isOpen)}
               type="button"
               aria-label="Sort the results"
-              className="flex rounded-[8px] bg-[#FFFFFF] text-[#484848] p-[6px] text-[0.75rem] font-semibold font-sans cursor-pointer inline-flex items-center justify-center [box-shadow:inset_0_0_0_.5px_#D3D3D3,inset_0_-0.5px_0_.5px_#B5B5B5] 
-            active:[translate-y:0.0625rem]"
+              className="flex rounded-[8px] bg-[#FFFFFF] text-[#484848] p-[6px] text-[0.75rem] font-semibold font-sans cursor-pointer inline-flex items-center justify-center   shadow-[inset_0_0_0_.5px_#D3D3D3,inset_0_-.5px_0_.5px_#B5B5B5]
+    active:translate-y-[0.0625rem]"
             >
               {/* Sort Icon */}
               <svg
@@ -150,9 +153,10 @@ function TableHeader({ filter, setFilter, showSearch, setShowSearch }) {
 
                   {/* Button  one */}
 
-                  <div className="py-[8px] flex flex-col gap-1
-                  ">
-
+                  <div
+                    className="py-[8px] flex flex-col gap-1
+                  "
+                  >
                     <button
                       type="button"
                       className="flex items-center gap-2 p-[6px] rounded-[10px] w-full text-left hover:bg-[#F2F2F2] cursor-pointer"
@@ -181,24 +185,24 @@ function TableHeader({ filter, setFilter, showSearch, setShowSearch }) {
 
                     <button
                       type="button"
-                       className="flex items-center gap-2 p-[6px] rounded-[10px] w-full text-left hover:bg-[#F2F2F2] cursor-pointer"
+                      className="flex items-center gap-2 p-[6px] rounded-[10px] w-full text-left hover:bg-[#F2F2F2] cursor-pointer"
                     >
                       {/* The Up Arrow SVG */}
                       <span className="flex items-center justify-center text-gray-500">
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    viewBox="0 0 16 16" 
-    width="16" 
-    height="16" 
-    fill="currentColor"
-  >
-    <path 
-      fillRule="evenodd" 
-      d="M8 1.5a.75.75 0 0 1 .75.75v9.69l2.72-2.72a.749.749 0 1 1 1.06 1.06l-4 4a.747.747 0 0 1-1.06 0l-4-4a.749.749 0 1 1 1.06-1.06l2.72 2.72v-9.69a.75.75 0 0 1 .75-.75" 
-      clipRule="evenodd"
-    />
-  </svg>
-</span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 16 16"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M8 1.5a.75.75 0 0 1 .75.75v9.69l2.72-2.72a.749.749 0 1 1 1.06 1.06l-4 4a.747.747 0 0 1-1.06 0l-4-4a.749.749 0 1 1 1.06-1.06l2.72 2.72v-9.69a.75.75 0 0 1 .75-.75"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </span>
 
                       {/* Button Text */}
                       <span className="text-[12px] font-[550] text-[#000]">
@@ -217,3 +221,4 @@ function TableHeader({ filter, setFilter, showSearch, setShowSearch }) {
 }
 
 export default TableHeader;
+
