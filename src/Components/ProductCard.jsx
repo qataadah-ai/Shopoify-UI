@@ -7,13 +7,13 @@ function ProductCard({ product, isChecked, onCheck }) {
     <tr className="group hover:bg-[#f7f7f7] cursor-pointer border-b border-gray-300">
       {/* Sticky Checkbox */}
       <td
-        className="sticky left-0 z-10 w-[36px]
-        bg-white group-hover:bg-inherit
-        p-[6px_6px_6px_12px]"
+        className="sticky left-0 z-10 w-[36px] min-w-[36px] max-w-[36px] 
+  bg-white group-hover:bg-[#f7f7f7] 
+  p-[6px_6px_6px_12px] border-b border-gray-300"
       >
         <input
           type="checkbox"
-          className="h-4 w-4"
+          className="h-4 w-4 accent-black blo"
           checked={isChecked}
           onChange={onCheck}
         />

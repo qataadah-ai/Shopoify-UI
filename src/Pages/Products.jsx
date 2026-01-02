@@ -10,6 +10,24 @@ function Products() {
   const [SearchTerm, setSearchTerm] = useState("");
   const [showSearch, setShowSearch] = useState(false);
 
+  const [selectedIDs, setselectedIDs] = useState([]);
+
+  const toggleAll = () => {
+    if (selectedIDs.length === filterProducts.length) {
+      setselectedIDs([]);
+    } else {
+      setselectedIDs(filterProducts.map((p) => p.id));
+    }
+  };
+
+  const toggleOne = (id) => {
+    setselectedIDs((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
+
+
   let filterProducts = ProductsData.filter((product) => {
     let matchesFilter = filter === "All" ? true : product.Status === filter;
 
@@ -30,10 +48,10 @@ function Products() {
             setFilter={setFilter}
             showSearch={showSearch}
             setShowSearch={setShowSearch}
-            SearchTerm={SearchTerm}      // Add this
-  setSearchTerm={setSearchTerm}
+            SearchTerm={SearchTerm} // Add this
+            setSearchTerm={setSearchTerm}
           />
-        
+
           <div className="overflow-x-auto">
             {/* Table Wrapper */}
             <table className="min-w-[998px] w-full border-collapse table-fixed">
@@ -42,13 +60,31 @@ function Products() {
               <thead className="bg-[#f6f6f7] border-b border-gray-300">
                 {/* Sticky Checkbox */}
                 <tr>
-                  <th className="sticky left-0 z-100 w-[36px] bg-[#f6f6f7] p-[6px_6px_6px_12px] ">
-                    <input type="checkbox" className="h-4 w-4 " />
+                  <th
+                    className="sticky left-0 z-50 w-[36px] min-w-[36px] max-w-[36px]
+  bg-[#f6f6f7] p-[6px_6px_6px_12px] relative"
+                  >
+                    <input
+                      onChange={toggleAll}
+                      checked={
+                        selectedIDs.length === filterProducts.length &&
+                        filterProducts.length > 0
+                      }
+                      type="checkbox"
+                      className="h-4 w-4 accent-black block"
+                    />
                   </th>
+                  {/* Sticky Image Header (Column 2) */}
+<th className="sticky left-[36px] z-50 w-[52px] min-w-[52px] max-w-[52px] bg-[#f6f6f7] p-[6px]">
+  {selectedIDs.length > 0 && (
+    <div className="flex items-center justify-center">
+      <span className="text-[12px]  text-black   rounded-md">
+        {selectedIDs.length} selected
+      </span>
+    </div>
+  ) }
+</th>
 
-                  <th className="sticky left-[36px] z-50 w-[52px] min-w-[52px] max-w-[52px] bg-[#f6f6f7] p-[6px] ">
-                    <span className="sr-only">Image</span>
-                  </th>
                   {/* Sortable: Product */}
                   <th className="p-[6px] w-[280px] text-left">
                     <button className="inline-flex items-center gap-1 font-[550] text-[12px] text-[#616161]">
@@ -95,21 +131,27 @@ function Products() {
                       Catalogs
                     </button>
                   </th>
-                  
+
                   {/* Sticky Actions */}
                   <th className="sticky right-0 z-10 w-[44px] bg-[#f6f6f7] p-[6px_6px_6px_12px] ">
                     <span className="sr-only">Actions</span>
                   </th>
                 </tr>
               </thead>
- {/* Displaying all Products */}
+              {/* Displaying all Products */}
               <tbody className="border border-gray-300">
                 {filterProducts.map((product) => {
-                  return <ProductCard key={product.id} product={product} />;
+                  return (
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                      isChecked={selectedIDs.includes(product.id)}
+                      onCheck={() => toggleOne(product.id)}
+                    />
+                  );
                 })}
               </tbody>
-             <TableFooter />
-
+              <TableFooter />
             </table>
           </div>
         </div>
