@@ -1,33 +1,42 @@
 import { useState } from "react";
 
-function TableHeader({ filter, setFilter, showSearch, setShowSearch, SearchTerm, setSearchTerm }) {
-
+function TableHeader({
+  filter,
+  setFilter,
+  showSearch,
+  setShowSearch,
+  SearchTerm,
+  setSearchTerm,
+}) {
   const tabs = ["All", "Active", "Draft", "Archived"];
 
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="flex items-center justify-between p-2 border-b border-gray-200">
       {/* LEFT: Tabs */}
-      <div className="flex items-center gap-1">
-        {tabs.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setFilter(tab)}
-            className={`px-3 py-1 text-[12px] cursor-pointer font-[550] rounded-[10px] ${
-              filter === tab
-                ? "bg-[#e0e0e0]" // active tab style
-                : "text-[#4a4a4a] hover:bg-[#f1f1f1]"
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
+      {!showSearch ? (
+        <>
+          <div className="flex items-center gap-1">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setFilter(tab)}
+                className={`px-3 py-1 text-[12px] cursor-pointer font-[550] rounded-[10px] ${
+                  filter === tab
+                    ? "bg-[#e0e0e0]" // active tab style
+                    : "text-[#4a4a4a] hover:bg-[#f1f1f1]"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
 
-        {/* Create new view button stays same */}
-        <button
-          type="button"
-          aria-label="Create new view"
-          className="
+            {/* Create new view button */}
+
+            <button
+              type="button"
+              aria-label="Create new view"
+              className="
             inline-flex items-center justify-center
             w-7 h-7
             rounded-[10px]
@@ -36,25 +45,80 @@ function TableHeader({ filter, setFilter, showSearch, setShowSearch, SearchTerm,
             active:bg-[#e5e5e5]
             cursor-pointer
           "
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 16 16"
-            className="w-4 h-4"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5z" />
-          </svg>
-        </button>
-      </div>
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                className="w-4 h-4"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5z" />
+              </svg>
+            </button>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="flex items-center w-full gap-1  px-2">
+            {/* 1. The Search Input with Icon */}
+            <div className="relative flex-1 group">
+
+              {/* Magnifying Glass Icon */}
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
+                <svg
+                  className="w-4 h-4 text-[#6D6D6D]"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4"
+                  />
+                </svg>
+              </span>
+              <input
+                autoFocus
+                type="text"
+                value={SearchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Searching all products"
+                /* KEY CHANGE: pl-9 (Left Padding) makes room for the icon */
+                className="w-full bg-white border-none focus:ring-2 focus:ring-[#005bd3]  rounded-lg py-1.5 pl-8 pr-3 text-sm placeholder-gray-500 outline-none"
+              />
+            </div>
+            {/* 2. The Cancel Button - Closes search and resets text */}
+            <button
+              onClick={() => {
+                setShowSearch(false);
+                setSearchTerm("");
+              }}
+              className="text-[12px] font-[550] text-[#303030] px-2 py-1 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"
+            >
+              Cancel
+            </button>
+ 
+
+             <button 
+        className="text-[12px] font-[550] text-[#B5B5B5] bg-[#F2F2F2] px-2 py-1 rounded-lg"
+      >
+        Save as
+      </button>
+
+          </div>
+        </>
+      )}
 
       {/* RIGHT: Action Buttons */}
       <div className="flex items-center space-x-2">
         <div className="flex items-center space-x-2">
           {/* Search + Filter Button */}
-          <button
-            onClick={() => setShowSearch(!showSearch)}
+
+          {
+            !showSearch &&  (
+           <button
+            onClick={() => setShowSearch(true)}
             type="button"
             aria-label="Search and filter products"
             className="
@@ -63,9 +127,10 @@ function TableHeader({ filter, setFilter, showSearch, setShowSearch, SearchTerm,
           >
             {/* Search Icon */}
             <svg
-              className="w-4 h-4 mr-1"
+              className="w-4 h-4 mr-1 text-[#4a4a4a]"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
+              fill="currentColor"
             >
               <path
                 fillRule="evenodd"
@@ -83,8 +148,10 @@ function TableHeader({ filter, setFilter, showSearch, setShowSearch, SearchTerm,
               <path d="M3.5 7.25a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5z" />
             </svg>
           </button>
+        
+            )
+              }
           
-
           {/* Sort Button */}
 
           <div className="relative">
@@ -99,7 +166,8 @@ function TableHeader({ filter, setFilter, showSearch, setShowSearch, SearchTerm,
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
-                className="w-4 h-4"
+                className="w-4 h-4 text-[#4a4a4a]"
+                fill="currentColor"
               >
                 <path d="M5.75 4.06v7.69a.75.75 0 0 1-1.5 0v-7.69l-1.72 1.72a.749.749 0 1 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.749.749 0 1 1-1.06 1.06z" />
                 <path d="M11.75 4.25a.75.75 0 0 0-1.5 0v7.69l-1.72-1.72a.749.749 0 1 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.749.749 0 1 0-1.06-1.06l-1.72 1.72z" />
@@ -221,4 +289,3 @@ function TableHeader({ filter, setFilter, showSearch, setShowSearch, SearchTerm,
 }
 
 export default TableHeader;
-

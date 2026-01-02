@@ -33,20 +33,7 @@ function Products() {
             SearchTerm={SearchTerm}      // Add this
   setSearchTerm={setSearchTerm}
           />
-
-          {/* Search Input */}
-          {showSearch && (
-            <div className="p-2">
-              <input
-                type="text"
-                value={SearchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search products..."
-                className="w-full border border-gray-300 rounded p-2 text-sm"
-              />
-            </div>
-          )}
-
+        
           <div className="overflow-x-auto">
             {/* Table Wrapper */}
             <table className="min-w-[998px] w-full border-collapse table-fixed">
