@@ -2,6 +2,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Workflow } from "./Pages/Workflow";
 import "./App.css"
 import Products from "./Pages/Products";
+import SideBar from "./Components/SideBar";
 
 function App() {
   return (
