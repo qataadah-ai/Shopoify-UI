@@ -154,7 +154,7 @@ function TableHeader({
           
           {/* Sort Button */}
 
-          <div className="relative">
+          <div className="relative ">
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
@@ -192,7 +192,7 @@ function TableHeader({
                   </div>
 
                   {/* List of Options */}
-                  <div className="flex flex-col border-b border-gray-200 ">
+                  <div className="flex flex-col border-b border-gray-200 z-20 ">
                     {[
                       { id: "title", label: "Product title" },
                       { id: "created", label: "Created" },

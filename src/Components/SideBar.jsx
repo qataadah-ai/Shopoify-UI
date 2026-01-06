@@ -3,7 +3,7 @@ import React from "react";
 function SideBar() {
   return (
     <section>
-      <div className="w-[180px] h-[100%] bg-[#EBEBEB] py-3 px-3 ">
+      <div className=" h-[100%] bg-[#EBEBEB] p-[10px] ">
         <div className="flex mt-10 flex-col gap-4 list-none items-center justify-center">
           <li className="relative group w-fit">
             <p
